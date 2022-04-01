@@ -141,6 +141,9 @@ func Start() {
 	router.Use(UseCacher())
 	v0 := router.Group("/v0")
 	{
+		v0.GET("/", func(ctx *gin.Context) {
+			ctx.Writer.Write([]byte{'h', 'e', 'l', 'l', 'o'})
+		})
 		v0.POST("/upload", uploadHandler)
 	}
 	router.Static("/static", "./static")
